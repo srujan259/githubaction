@@ -22,4 +22,4 @@ jobs:
     - name: Run a multi-line script
       run: |
         echo Add other commands you want to run here
-        echo this featureeeeeeee test hmmm
+        echo this featureeeeeeee test hmmm PR MD
