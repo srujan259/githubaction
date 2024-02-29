@@ -11,9 +11,6 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        branch: [${{ github.event.inputs.branchName }}]
     steps:
     - uses: actions/checkout@v2
       with:
