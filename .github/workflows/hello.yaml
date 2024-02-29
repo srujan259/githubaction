@@ -1,16 +1,28 @@
-name: Hello World Workflow
+name: Manual Workflow with Branch Input
 
 on:
-  push:
-    branches:
-      - feature # Replace this with the name of your branch
+  workflow_dispatch:
+    inputs:
+      branchName:
+        description: 'Branch to run the workflow on'
+        required: true
+        default: 'main'  # Default branch if none is specified
 
 jobs:
   build:
     runs-on: ubuntu-latest
-
+    strategy:
+      matrix:
+        branch: [${{ github.event.inputs.branchName }}]
     steps:
     - uses: actions/checkout@v2
+      with:
+        ref: ${{ github.event.inputs.branchName }}
 
     - name: Run a one-line script
-      run: echo "Hello, GitHub Actions!"
+      run: echo Hello, world from ${{ github.event.inputs.branchName }}!
+
+    - name: Run a multi-line script
+      run: |
+        echo Add other commands you want to run here
+        echo This is a multi-line script
